@@ -12,22 +12,10 @@
 <body>
 
   <?php
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "db_kampus";
-
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
-  // echo "Koneksi ke database berhasil!";
-  
+  include("config.php");
   $sql = "SELECT * FROM tb_mahasiswa";
-  $result = $conn->query($sql);
+  $datas = $conn->query($sql);
+  // $result = $conn->query($sql['delete']);
   ?>
 
   <div class="container">
@@ -43,6 +31,7 @@
               <div class="col d-flex justify-content-end">
                 <button type="button" class="btn btn-success" data-toggle="modal"
                   data-target="#createModal">Create</button>
+                <!-- <a href="create.php" class="btn btn-success">Create</a> -->
               </div>
             </div>
           </div>
@@ -51,6 +40,7 @@
             <table class="table table-borderless">
               <thead>
                 <tr>
+                  <th scope="col">No</th>
                   <th scope="col">NIM</th>
                   <th scope="col">Nama</th>
                   <th scope="col">Umur</th>
@@ -61,26 +51,42 @@
               <tbody>
 
                 <?php
-                if ($result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
 
-                    echo '<tr>';
-                    echo '<th scope="row">' . $row['id_mahasiswa'] . '</th>';
-                    echo '<td>' . $row['nama_mahasiswa'] . '</td>';
-                    echo '<td>' . $row['umur'] . '</td>';
-                    echo '<td>' . $row['jurusan'] . '</td>';
-                    echo '<td>';
-                    echo '<button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editModal">Edit</button>';
-                    echo '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>';
-                    echo '</td>';
-                    echo '</tr>';
-                  }
+                $no = 1;
+                if ($datas->num_rows > 0) {
+                  while ($row = $datas->fetch_assoc()) {
+                    ?>
+
+                    <tr>
+                      <th scope="row">
+                        <?= $no++ ?>
+                      </th>
+                      <th scope="row">
+                        <?= $row['id_mahasiswa'] ?>
+                      </th>
+                      <td>
+                        <?= $row['nama_mahasiswa'] ?>
+                      </td>
+                      <td>
+                        <?= $row['umur'] ?>
+                      </td>
+                      <td>
+                        <?= $row['jurusan'] ?>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-primary mr-2" data-toggle="modal"
+                          data-target="#editModal">Edit</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                          data-target="#deleteModal<?= $row['id_mahasiswa'] ?>">Delete</button>
+                      </td>
+                    </tr>
+
+                  <?php }
                 } else {
                   echo '<tr>';
                   echo '<td colspan="5" class="text-center">No Data</td>';
                   echo '</tr>';
                 }
-                $conn->close();
                 ?>
 
               </tbody>
@@ -140,23 +146,37 @@
   <!-- End Edit Mahasiswa -->
 
   <!-- Start Delete Mahasiswa -->
-  <div class="modal fade " id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">are you sure to delete this data</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-danger">Delete</button>
+  <?php
+  foreach ($datas as $data) {
+    ?>
+
+    <div class="modal fade " id="deleteModal<?= $data['id_mahasiswa'] ?>" tabindex="-1"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete
+              <?= $data['nama_mahasiswa'] ?>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+            <a href="delete.php?id=<?= $data['id_mahasiswa'] ?>" type="button" class="btn btn-danger">Delete</a>
+            <!-- <button type="button" class="btn btn-danger">Delete</button> -->
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <?php
+  }
+  ?>
   <!-- End Delete Mahasiswa -->
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
