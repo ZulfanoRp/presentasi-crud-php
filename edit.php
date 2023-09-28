@@ -23,7 +23,7 @@
                                         class="bi bi-arrow-bar-left"></i>Back</a>
                             </div>
                             <div class="col d-flex justify-content-center">
-                                <h5>Create Mahasiswa</h5>
+                                <h5>Edit Mahasiswa</h5>
                             </div>
 
                         </div>

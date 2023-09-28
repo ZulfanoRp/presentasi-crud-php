@@ -15,7 +15,6 @@
   include("config.php");
   $sql = "SELECT * FROM tb_mahasiswa";
   $datas = $conn->query($sql);
-  // $result = $conn->query($sql['delete']);
   ?>
 
   <div class="container">
@@ -29,9 +28,7 @@
                 <h5>Table Mahasiswa</h5>
               </div>
               <div class="col d-flex justify-content-end">
-                <button type="button" class="btn btn-success" data-toggle="modal"
-                  data-target="#createModal">Create</button>
-                <!-- <a href="create.php" class="btn btn-success">Create</a> -->
+                <a href="create.php" class="btn btn-success">Create</a>
               </div>
             </div>
           </div>
@@ -74,8 +71,7 @@
                         <?= $row['jurusan'] ?>
                       </td>
                       <td>
-                        <button type="button" class="btn btn-primary mr-2" data-toggle="modal"
-                          data-target="#editModal">Edit</button>
+                        <a href="edit.php" class="btn btn-primary">Edit</a>
                         <button type="button" class="btn btn-danger" data-toggle="modal"
                           data-target="#deleteModal<?= $row['id_mahasiswa'] ?>">Delete</button>
                       </td>
@@ -99,52 +95,6 @@
     </div>
   </div>
 
-  <!-- Start Create Mahasiswa -->
-  <div class="modal fade" id="createModal" tabindex="-1" data-backdrop="static" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Create Mahasiswa -->
-
-  <!-- Start Edit Mahasiswa -->
-  <div class="modal fade" id="editModal" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Edit Mahasiswa -->
-
   <!-- Start Delete Mahasiswa -->
   <?php
   foreach ($datas as $data) {
@@ -152,7 +102,7 @@
 
     <div class="modal fade " id="deleteModal<?= $data['id_mahasiswa'] ?>" tabindex="-1"
       aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete
