@@ -30,29 +30,43 @@
                     </div>
 
                     <div class="card-body">
-                        <form>
+                        <form action="" method="post">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">NIM</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label>NIM</label>
+                                <input type="number" class="form-control" id="id_mahasiswa" name="id_mahasiswa"
+                                    required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label>Nama</label>
+                                <input type="text" class="form-control" id="nama_mahasiswa" name="nama_mahasiswa"
+                                    required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Umur</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label>Umur</label>
+                                <input type="number" class="form-control" id="umur" name="umur">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Jurusan</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label>Jurusan</label>
+                                <input type="text" class="form-control" id="jurusan" name="jurusan">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" name="submit" value="save">Submit</button>
                         </form>
+
+                        <?php
+                        include 'config.php';
+
+                        if (isset($_POST['submit'])) {
+                            $id_mahasiswa = $_POST['id_mahasiswa'];
+                            $nama_mahasiswa = $_POST['nama_mahasiswa'];
+                            $umur = $_POST['umur'];
+                            $jurusan = $_POST['jurusan'];
+
+                            $datas = mysqli_query($conn, "INSERT INTO tb_mahasiswa (id_mahasiswa,nama_mahasiswa,umur,jurusan) values ('$id_mahasiswa', '$nama_mahasiswa', '$umur', '$jurusan' )") or die(mysqli_error($conn));
+                            header('Location: index.php');
+                            exit();
+                        }
+                        ?>
+
                     </div>
 
                 </div>
