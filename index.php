@@ -71,7 +71,7 @@
                         <?= $row['jurusan'] ?>
                       </td>
                       <td>
-                        <a href="edit.php" class="btn btn-primary">Edit</a>
+                        <a href="edit.php?id=<?= $row['id_mahasiswa'] ?>" class="btn btn-primary">Edit</a>
                         <button type="button" class="btn btn-danger" data-toggle="modal"
                           data-target="#deleteModal<?= $row['id_mahasiswa'] ?>">Delete</button>
                       </td>

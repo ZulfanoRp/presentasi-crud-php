@@ -49,7 +49,13 @@
                                 <label>Jurusan</label>
                                 <input type="text" class="form-control" id="jurusan" name="jurusan">
                             </div>
-                            <button type="submit" class="btn btn-primary" name="submit" value="save">Submit</button>
+
+                            <div class="row">
+                                <div class="col d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary" name="submit"
+                                        value="save">Submit</button>
+                                </div>
+                            </div>
                         </form>
 
                         <?php

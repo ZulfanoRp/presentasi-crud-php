@@ -30,29 +30,54 @@
                     </div>
 
                     <div class="card-body">
-                        <form>
+                        <?php
+                        include 'config.php';
+
+                        $id_mahasiswa = $_GET['id'];
+                        $data = mysqli_query($conn, "SELECT * FROM tb_mahasiswa WHERE id_mahasiswa = '$id_mahasiswa'");
+                        $row = $data->fetch_assoc();
+                        ?>
+                        <form action="" method="post">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">NIM</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label>NIM</label>
+                                <input type="number" class="form-control" id="id_mahasiswa" name="id_mahasiswa"
+                                    value="<?= $row['id_mahasiswa'] ?>">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nama</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label>Nama</label>
+                                <input type="text" class="form-control" id="nama_mahasiswa" name="nama_mahasiswa"
+                                    value="<?= $row['nama_mahasiswa'] ?>">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Umur</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label>Umur</label>
+                                <input type="number" class="form-control" id="umur" name="umur"
+                                    value="<?= $row['umur'] ?>">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Jurusan</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label>Jurusan</label>
+                                <input type="text" class="form-control" id="jurusan" name="jurusan"
+                                    value="<?= $row['jurusan'] ?>">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <input type="hidden" name="id_mahasiswa" required="" value="<?= $row['id_mahasiswa']; ?>">
+                            <div class="row">
+                                <div class="col d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary" name="submit"
+                                        value="save">Submit</button>
+                                </div>
+                            </div>
                         </form>
+                        <?php
+                        if (isset($_POST['submit'])) {
+                            $id_mahasiswa = $_POST['id_mahasiswa'];
+                            $nama_mahasiswa = $_POST['nama_mahasiswa'];
+                            $umur = $_POST['umur'];
+                            $jurusan = $_POST['jurusan'];
+
+                            mysqli_query($conn, "UPDATE tb_mahasiswa SET id_mahasiswa='$id_mahasiswa', nama_mahasiswa='$nama_mahasiswa', umur='$umur', jurusan='$jurusan' WHERE id_mahasiswa='$id_mahasiswa'") or die(mysqli_error($conn));
+                            header('Location: index.php');
+                            exit();
+                        }
+                        ?>
                     </div>
 
                 </div>
