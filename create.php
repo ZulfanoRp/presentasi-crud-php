@@ -32,11 +32,6 @@
                     <div class="card-body">
                         <form action="" method="post">
                             <div class="form-group">
-                                <label>NIM</label>
-                                <input type="number" class="form-control" id="id_mahasiswa" name="id_mahasiswa"
-                                    required>
-                            </div>
-                            <div class="form-group">
                                 <label>Nama</label>
                                 <input type="text" class="form-control" id="nama_mahasiswa" name="nama_mahasiswa"
                                     required>
@@ -62,7 +57,6 @@
                         include 'config.php';
 
                         if (isset($_POST['submit'])) {
-                            $id_mahasiswa = $_POST['id_mahasiswa'];
                             $nama_mahasiswa = $_POST['nama_mahasiswa'];
                             $umur = $_POST['umur'];
                             $jurusan = $_POST['jurusan'];

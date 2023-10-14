@@ -38,7 +38,6 @@
               <thead>
                 <tr>
                   <th scope="col">No</th>
-                  <th scope="col">NIM</th>
                   <th scope="col">Nama</th>
                   <th scope="col">Umur</th>
                   <th scope="col">Jurusan</th>
@@ -57,9 +56,6 @@
                     <tr>
                       <th scope="row">
                         <?= $no++ ?>
-                      </th>
-                      <th scope="row">
-                        <?= $row['id_mahasiswa'] ?>
                       </th>
                       <td>
                         <?= $row['nama_mahasiswa'] ?>

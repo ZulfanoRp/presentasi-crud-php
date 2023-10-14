@@ -39,14 +39,9 @@
                         ?>
                         <form action="" method="post">
                             <div class="form-group">
-                                <label>NIM</label>
-                                <input type="number" class="form-control" id="id_mahasiswa" name="id_mahasiswa"
-                                    value="<?= $row['id_mahasiswa'] ?>">
-                            </div>
-                            <div class="form-group">
                                 <label>Nama</label>
                                 <input type="text" class="form-control" id="nama_mahasiswa" name="nama_mahasiswa"
-                                    value="<?= $row['nama_mahasiswa'] ?>">
+                                    value="<?= $row['nama_mahasiswa'] ?>" required>
                             </div>
                             <div class="form-group">
                                 <label>Umur</label>
@@ -68,7 +63,6 @@
                         </form>
                         <?php
                         if (isset($_POST['submit'])) {
-                            $id_mahasiswa = $_POST['id_mahasiswa'];
                             $nama_mahasiswa = $_POST['nama_mahasiswa'];
                             $umur = $_POST['umur'];
                             $jurusan = $_POST['jurusan'];
