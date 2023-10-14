@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2023 at 12:07 PM
+-- Generation Time: Oct 14, 2023 at 03:43 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -39,8 +39,8 @@ CREATE TABLE `tb_mahasiswa` (
 --
 
 INSERT INTO `tb_mahasiswa` (`id_mahasiswa`, `nama_mahasiswa`, `umur`, `jurusan`) VALUES
-(1211, 'Nanak', 30, 'Rekayasa Perangkat Lunakk'),
-(54321, 'zulfano RP', 25, 'Sistem informasi');
+(543215, 'Zulfano Rizqullah Pramono', 22, 'Sistem Informasi'),
+(543216, 'Nanak', 21, 'Sistem Informasi');
 
 --
 -- Indexes for dumped tables
@@ -60,7 +60,7 @@ ALTER TABLE `tb_mahasiswa`
 -- AUTO_INCREMENT for table `tb_mahasiswa`
 --
 ALTER TABLE `tb_mahasiswa`
-  MODIFY `id_mahasiswa` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543213;
+  MODIFY `id_mahasiswa` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543217;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
